@@ -2,12 +2,10 @@ package com.example.demo.utils;
 
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
-import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.google.common.collect.Lists;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * @author stream
@@ -60,13 +58,6 @@ public class CodeGenerator {
                     builder.controllerBuilder()
                             .enableHyphenStyle()
                             .enableRestStyle();
-                })
-                .templateConfig(new Consumer<TemplateConfig.Builder>() {
-                    @Override
-                    public void accept(TemplateConfig.Builder builder) {
-                        // 实体类使用我们自定义模板
-                        builder.entity("templates/entity.java");
-                    }
                 })
                 .execute();
     }
