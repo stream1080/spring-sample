@@ -14,28 +14,28 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
-public class ResponseVo<T> {
+public class ResponseVo {
 
     private Integer code;
 
     private String msg;
 
-    private T data;
+    private Object data;
 
-    public static <T> ResponseVo<T> ok() {
+    public static ResponseVo ok() {
         return ResponseVo.ok(null);
     }
 
-    public static <T> ResponseVo<T> ok(T data) {
-        return new ResponseVo<T>(ResponseEnum.SUCCESS.getCode(), ResponseEnum.SUCCESS.getMsg(), data);
+    public static ResponseVo ok(Object data) {
+        return new ResponseVo(ResponseEnum.SUCCESS.getCode(), ResponseEnum.SUCCESS.getMsg(), data);
     }
 
-    public static <T> ResponseVo<T> error(ResponseEnum responseEnum) {
-        return new ResponseVo<T>(responseEnum.getCode(), responseEnum.getMsg(), null);
+    public static ResponseVo error(ResponseEnum responseEnum) {
+        return new ResponseVo(responseEnum.getCode(), responseEnum.getMsg(), null);
     }
 
-    public static <T> ResponseVo<T> error(ResponseEnum responseEnum, String msg) {
-        return new ResponseVo<T>(responseEnum.getCode(), msg, null);
+    public static ResponseVo error(ResponseEnum responseEnum, String msg) {
+        return new ResponseVo(responseEnum.getCode(), msg, null);
     }
 
 }
