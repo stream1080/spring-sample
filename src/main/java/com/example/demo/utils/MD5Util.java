@@ -3,6 +3,9 @@ package com.example.demo.utils;
 
 import org.springframework.util.DigestUtils;
 
+/**
+ * @author stream
+ */
 public class MD5Util {
 
     public static final String salt = "1a2b3c4d";

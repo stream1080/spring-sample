@@ -7,10 +7,12 @@ import java.util.regex.Pattern;
 
 /**
  * 校验
+ *
+ * @author stream
  */
 public class ValidatorUtil {
 
-    private static Pattern MOBILE_PATTERN = Pattern.compile("[1]([3-9])[0-9]{9}$");
+    private static final Pattern MOBILE_PATTERN = Pattern.compile("[1]([3-9])[0-9]{9}$");
 
     /**
      * 手机号码校验
