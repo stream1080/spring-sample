@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.3</version>
+        <version>2.6.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -14,12 +14,34 @@
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>demo</name>
+    <name>scaffold-java</name>
 
-    <description>Demo project for Spring Boot</description>
+    <description>Spring Boot 工程模版</description>
 
     <properties>
         <java.version>1.8</java.version>
+        <mybatis-plus.version>3.5.2</mybatis-plus.version>
+        <mybatis-plus-generator.version>3.5.2</mybatis-plus-generator.version>
+        <velocity.version>2.0</velocity.version>
+        <swagger.version>2.9.2</swagger.version>
+        <bootstrap-ui.version>1.9.6</bootstrap-ui.version>
+
+        <aliyun.oss.version>3.1.0</aliyun.oss.version>
+        <jodatime.version>2.10.1</jodatime.version>
+        <commons-fileupload.version>1.3.1</commons-fileupload.version>
+        <commons-io.version>2.6</commons-io.version>
+        <commons-lang.version>3.9</commons-lang.version>
+        <httpclient.version>4.5.1</httpclient.version>
+        <jwt.version>0.7.0</jwt.version>
+        <fastjson.version>1.2.28</fastjson.version>
+        <gson.version>2.8.2</gson.version>
+        <json.version>20170516</json.version>
+        <commons-dbutils.version>1.7</commons-dbutils.version>
+        <canal.client.version>1.1.0</canal.client.version>
+        <docker.image.prefix>zx</docker.image.prefix>
+        <alibaba.easyexcel.version>2.1.1</alibaba.easyexcel.version>
+        <apache.xmlbeans.version>3.1.0</apache.xmlbeans.version>
+        <cloud-alibaba.version>0.2.2.RELEASE</cloud-alibaba.version>
     </properties>
 
     <dependencies>
@@ -38,42 +60,42 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.0.5</version>
+            <version>${mybatis-plus.version}</version>
         </dependency>
 
         <!--        代码生成器-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.0.5</version>
+            <version>${mybatis-plus-generator.version}</version>
         </dependency>
 
         <!--        代码生成器模板引擎-->
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
-            <version>2.0</version>
+            <version>${velocity.version}</version>
         </dependency>
 
         <!-- 添加swagger2相关功能 -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-
-        <!--        swagger2-bootstrap-ui-->
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>1.9.6</version>
+            <version>${swagger.version}</version>
         </dependency>
 
         <!--        swagger-ui-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
+            <version>${swagger.version}</version>
+        </dependency>
+
+        <!--        swagger2-bootstrap-ui-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>${bootstrap-ui.version}</version>
         </dependency>
 
         <dependency>
@@ -98,20 +120,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <!-- 引入swagger2相关依赖 -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-
-        <!-- 引入添加swagger-ui相关依赖 -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
         </dependency>
 
     </dependencies>
