@@ -1,54 +1,50 @@
-package com.example.demo.config;//package com.example.demo.config;
-//
-//import org.springframework.amqp.core.Binding;
-//import org.springframework.amqp.core.BindingBuilder;
-//import org.springframework.amqp.core.FanoutExchange;
-//import org.springframework.amqp.core.Queue;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//
-//
-///**
-// * RabbitMQ配置类
-// */
-//@Configuration
-//public class RabbitMQConfig {
-//
-//    @Bean
-//    public Queue queue(){
-//        return new Queue("queue");
-//    }
-//
-//    @Bean
-//    public Queue queue01(){
-//        return new Queue("queue_fanout01");
-//    }
-//
-//    @Bean
-//    public Queue queue02(){
-//        return new Queue("queue_fanout02");
-//    }
-//
-//    @Bean
-//    public FanoutExchange fanoutExchange(){
-//        return new FanoutExchange("fanoutExchange");
-//    }
-//
-//    /**
-//     * 将队列queue01绑定到fanoutExchange交换机上
-//     * @return
-//     */
-//    @Bean
-//    public Binding binding01(){
-//        return BindingBuilder.bind(queue01()).to(fanoutExchange());
-//    }
-//
-//    /**
-//     * 将队列queue01绑定到fanoutExchange交换机上
-//     * @return
-//     */
-//    @Bean
-//    public Binding binding02(){
-//        return BindingBuilder.bind(queue02()).to(fanoutExchange());
-//    }
-//}
+package com.example.demo.config;
+
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * 消息队列配置
+ *
+ * @author stream
+ */
+@Configuration
+public class RabbitmqConfig {
+
+    /**
+     * 队列 queue
+     */
+    public static final String QUEUE = "demo-queue";
+
+    /**
+     * 交换机 exchange
+     */
+    public static final String EXCHANGE = "demo-exchange";
+
+    /**
+     * 路由键 routingkey
+     * #表示0或多个单词
+     * *表示一个单词
+     */
+    public static final String ROUTING_KEY = "key.#";
+
+    @Bean
+    public Queue secKillQueue() {
+        return new Queue(QUEUE);
+    }
+
+    @Bean
+    public DirectExchange secKillExchange() {
+        return new DirectExchange(EXCHANGE);
+    }
+
+    @Bean
+    public Binding bindingSecKill() {
+        return BindingBuilder.bind(secKillQueue()).to(secKillExchange()).with(ROUTING_KEY);
+    }
+
+}

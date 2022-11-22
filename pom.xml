@@ -121,6 +121,12 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
+        <!--        RabbitMQ     -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
         <!--junit测试相关的依赖-->
         <dependency>
             <groupId>junit</groupId>
