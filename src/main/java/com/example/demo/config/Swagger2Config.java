@@ -10,8 +10,11 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@Configuration // 告诉Spring容器，这个类是一个配置类
-@EnableSwagger2 // 启用Swagger2功能
+/**
+ * @author stream
+ */
+@Configuration
+@EnableSwagger2
 public class Swagger2Config {
 
     /**
@@ -22,7 +25,8 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com"))// com包下所有API都交给Swagger2管理
+                // com包下所有API都交给Swagger2管理
+                .apis(RequestHandlerSelectors.basePackage("com"))
                 .paths(PathSelectors.any()).build();
     }
 
@@ -33,10 +37,14 @@ public class Swagger2Config {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("项目API") // 标题
-                .description("整个项目的各个API") // 描述
-                .termsOfServiceUrl("http://www.baidu.com") // 服务网址，一般写公司地址
-                .version("1.0") // 版本
+                // 标题
+                .title("demo-api")
+                // 描述
+                .description("项目API")
+                // 服务网址，一般写公司地址
+                .termsOfServiceUrl("http://www.demo.com")
+                // 版本
+                .version("1.0")
                 .build();
     }
 }
