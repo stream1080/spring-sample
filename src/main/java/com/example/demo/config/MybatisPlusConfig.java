@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @author stream
  */
 @Configuration
-@MapperScan("com.example.mapper")
+@MapperScan("com.example.demo.mapper")
 public class MybatisPlusConfig {
 
     /**
