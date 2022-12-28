@@ -4,8 +4,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
-  application:
-    name: scaffold-java
   redis:
     database: 0
     host: localhost
@@ -13,13 +11,10 @@ spring:
     lettuce:
       pool:
         max-active: 8
-mybatis-plus:
-  config-location: classpath:mapper/*.xml
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 server:
   port: 8080
 
 logging:
-  level: info
+  level:
+    root: info
 
