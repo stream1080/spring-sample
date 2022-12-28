@@ -5,6 +5,5 @@ spring:
     active: dev
 
 mybatis-plus:
-  config-location: classpath:mapper/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
