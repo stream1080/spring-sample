@@ -7,5 +7,5 @@ cid=`git rev-parse --short HEAD`
 echo "git commit id: ${cid}"
 
 # maven 构建
-mvn clean package -Dmaven.test.skip=true
+mvn clean package -Dmaven.test.skip=true -f ../pom.xml
 
