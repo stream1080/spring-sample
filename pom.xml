@@ -84,12 +84,12 @@
             <version>${velocity.version}</version>
         </dependency>
 
-        <!-- swagger -->
-        <!--        <dependency>-->
-        <!--            <groupId>io.springfox</groupId>-->
-        <!--            <artifactId>springfox-boot-starter</artifactId>-->
-        <!--            <version>${swagger.version}</version>-->
-        <!--        </dependency>-->
+        <!--         swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
