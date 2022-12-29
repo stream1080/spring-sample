@@ -1,4 +1,4 @@
-name: Uint Test
+name: Uint Tests
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      # 编译打包
-      - name: Test with Maven
+      # 单元测试
+      - name: Run Unit Tests
         run: mvn test
 
