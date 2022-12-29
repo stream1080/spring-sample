@@ -11,9 +11,7 @@ IMAGE=$1
 
 #准备jar包
 sh package.sh
-
-mkdir application
-cp -r ../target/application.jar ./application.jar
+cp -r ../target/*.jar ./app.jar
 
 #build image
 docker build -t ${IMAGE} .
