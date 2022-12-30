@@ -1,31 +1,27 @@
-name: Uint Tests
+name: Java CI with Maven
 
 on:
   push:
-    # 分支
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
 jobs:
-  compile:
+  build:
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java: [ '8', '11', '17' ]
+
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 1.8
+      - name: Set up JDK ${{ matrix.Java }}
         uses: actions/setup-java@v2
         with:
-          java-version: '8'
-          distribution: 'adopt'
-      # maven缓存，不加的话每次都会去重新拉取，会影响速度
-      - name: Dependies Cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-      # 单元测试
-      - name: Run Unit Tests
-        run: mvn test
-
+          java-version: ${{ matrix.java }}
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml -Dmaven.test.skip=true
