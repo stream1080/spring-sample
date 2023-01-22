@@ -9,11 +9,14 @@ fi
 
 IMAGE=$1
 
-#准备jar包
-sh package.sh
-cp -r ../target/*.jar ./app.jar
+# 获取 commit id
+cid=`git rev-parse --short HEAD`
+echo "git commit id: ${cid}"
 
-#build image
+# maven build
+mvn clean package -Dmaven.test.skip=true -f ../pom.xml
+
+# docker build
 docker build -t ${IMAGE} .
 [ "$?" -ne 0 ] && {
 
@@ -24,6 +27,5 @@ docker build -t ${IMAGE} .
 
     exit 103
 } || {
-
-    echo "create image ${IMAGE} successfully and will push it to registry."
+    echo "create image ${IMAGE} successfully."
 }
