@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @author stream
  */
 @Configuration
-public class RabbitmqConfig {
+public class RabbitMQConfig {
 
     /**
      * 队列 queue
@@ -26,7 +26,7 @@ public class RabbitmqConfig {
     public static final String EXCHANGE = "demo-exchange";
 
     /**
-     * 路由键 routingkey
+     * 路由键 routingKey
      * #表示0或多个单词
      * *表示一个单词
      */

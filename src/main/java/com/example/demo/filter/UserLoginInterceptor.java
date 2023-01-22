@@ -1,7 +1,6 @@
 package com.example.demo.filter;
 
 
-import com.example.demo.exception.UserLoginException;
 import com.example.demo.model.entity.DemoUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UserLoginInterceptor implements HandlerInterceptor {
 
     /**
-     * true表示继续，false中断
+     * true 表示继续，false 中断
      *
      * @param request
      * @param response
@@ -30,10 +29,10 @@ public class UserLoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("sessionId= {}", request.getSession());
         DemoUser user = (DemoUser) request.getSession().getAttribute("CURRENT_USER");
-        if (user == null) {
-            log.info("user = null");
-            throw new UserLoginException();
-        }
+//        if (user == null) {
+//            log.info("user = null");
+//            throw new UserLoginException();
+//        }
         return true;
     }
 
