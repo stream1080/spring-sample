@@ -27,7 +27,7 @@ start(){
  echo "=====> ${APP_NAME} is already running. pid=${pid} ."
  else
  nohup java -jar $APP_NAME > ./logs/deploy.log 2>&1 &
- echo "${APP_NAME} start success"
+ echo "=====> ${APP_NAME} start success"
  fi
 }
 
@@ -37,7 +37,7 @@ stop(){
  if [ $? -eq "0" ]; then
  kill -9 $pid
  else
- echo "${APP_NAME} is not running"
+ echo "=====> ${APP_NAME} is not running"
  fi
 }
 
@@ -54,6 +54,7 @@ status(){
 #重启
 restart(){
  stop
+ sleep 3
  start
 }
 

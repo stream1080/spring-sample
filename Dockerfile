@@ -6,11 +6,14 @@ MAINTAINER stream1080
 
 RUN mkdir -p /home/admin
 
+# 定义工作目录
 WORKDIR /home/admin
 
-# 复制jar文件到路径
-ADD app.jar /home/admin/app.jar
+# 复制 jar 文件到容器中
+COPY ./target/*.jar /home/admin/app.jar
 
+# 暴露端口
 EXPOSE 8080
+
 # 启动服务
-ENTRYPOINT ["java","-jar","app.jar"]
+CMD ["java","-jar","app.jar"]
