@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-11-22
  */
 @RestController
-@RequestMapping("/demo-user")
+@RequestMapping("/demo")
 public class DemoUserController {
 
+    @GetMapping("/index")
+    public String index() {
+        return "demo index";
+    }
 }
