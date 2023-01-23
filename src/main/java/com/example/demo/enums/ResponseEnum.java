@@ -15,7 +15,7 @@ public enum ResponseEnum {
     // 公共类型
     SUCCESS(200, "success"),
     INVALID_PARAM(400, "invalid param"),
-    UNAUTHORIZED(401, "no authorized"),
+    UNAUTHORIZED(401, "unauthorized"),
     FORBIDDEN(403, "forbidden"),
     NOT_FOUND(404, "not found"),
     SERVER_ERROR(500, "server error"),

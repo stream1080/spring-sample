@@ -65,6 +65,4 @@ public class RuntimeExceptionHandler {
         log.error("======> {}", e.getMessage());
         return ResponseVo.error(ResponseEnum.SERVER_ERROR, e.getMessage());
     }
-
-
 }
