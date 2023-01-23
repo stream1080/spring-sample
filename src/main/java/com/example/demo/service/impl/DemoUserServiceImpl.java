@@ -3,7 +3,7 @@ package com.example.demo.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.mapper.DemoUserMapper;
 import com.example.demo.model.entity.DemoUser;
-import com.example.demo.service.DemoUserService;
+import com.example.demo.service.intl.DemoUserService;
 import org.springframework.stereotype.Service;
 
 /**
