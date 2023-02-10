@@ -3,7 +3,9 @@ spring:
     name: scaffold-java
   profiles:
     active: dev
-
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

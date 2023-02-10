@@ -1,6 +1,6 @@
 package com.example.demo.aspect;
 
-import com.example.demo.annnotation.NotControllerResponseAdvice;
+import com.example.demo.annnotation.NoResponseVo;
 import com.example.demo.enums.ResponseEnum;
 import com.example.demo.exception.ScaffoldException;
 import com.example.demo.vo.ResponseVo;
@@ -21,29 +21,29 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @author stream
  * @since 2022-11-22 12:45
  */
-@RestControllerAdvice
-public class ControllerResponseAdvice implements ResponseBodyAdvice<Object> {
+@RestControllerAdvice(basePackages = "com.example.demo.controller")
+public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter methodParameter, @NotNull Class<? extends HttpMessageConverter<?>> aClass) {
         // response 是 ResponseVo 类型，或者注释了 NotControllerResponseAdvice 都不进行包装
         return !methodParameter.getParameterType().isAssignableFrom(ResponseVo.class)
-                || methodParameter.hasMethodAnnotation(NotControllerResponseAdvice.class);
+                || methodParameter.hasMethodAnnotation(NoResponseVo.class);
     }
 
     @Override
     public Object beforeBodyWrite(Object data, MethodParameter returnType, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest request, ServerHttpResponse response) {
-        // String类型不能直接包装
+        // String 类型不能直接包装
         if (returnType.getGenericParameterType().equals(String.class)) {
             ObjectMapper objectMapper = new ObjectMapper();
             try {
-                // 将数据包装在ResultVo里后转换为json串进行返回
+                // 将数据包装在 ResponseVo 里后转换为 json 串进行返回
                 return objectMapper.writeValueAsString(ResponseVo.ok(data));
             } catch (JsonProcessingException e) {
                 throw new ScaffoldException(ResponseEnum.SERVER_ERROR, e.getMessage());
             }
         }
-        // 否则直接包装成ResultVo返回
+        // 否则直接包装成 ResponseVo 返回
         return ResponseVo.ok(data);
     }
 }
