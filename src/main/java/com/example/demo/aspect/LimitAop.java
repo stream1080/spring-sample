@@ -1,6 +1,7 @@
 package com.example.demo.aspect;
 
 import com.example.demo.annnotation.Limit;
+import com.example.demo.exception.ScaffoldException;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.RateLimiter;
 import lombok.extern.slf4j.Slf4j;
@@ -34,27 +35,28 @@ public class LimitAop {
         Method method = signature.getMethod();
         //获取 limit 的注解
         Limit limit = method.getAnnotation(Limit.class);
-        if (limit != null) {
-            // key 作用：不同的接口，不同的流量控制
-            String key = limit.key();
-            RateLimiter rateLimiter;
-            // 验证缓存是否有命中 key
-            if (!limitMap.containsKey(key)) {
-                // 创建令牌桶
-                rateLimiter = RateLimiter.create(limit.permitsPerSecond());
-                limitMap.put(key, rateLimiter);
-                log.info("新建了令牌桶: {}，容量: {}", key, limit.permitsPerSecond());
-            }
-            rateLimiter = limitMap.get(key);
+        if (limit == null) {
+            return joinPoint.proceed();
+        }
 
-            // 获取令牌
-            boolean acquire = rateLimiter.tryAcquire(limit.timeout(), limit.timeunit());
+        // key 作用：不同的接口，不同的流量控制
+        String key = limit.key();
+        RateLimiter rateLimiter;
+        // 验证缓存是否有命中 key
+        if (!limitMap.containsKey(key)) {
+            // 创建令牌桶
+            rateLimiter = RateLimiter.create(limit.permitsPerSecond());
+            limitMap.put(key, rateLimiter);
+            log.info("新建了令牌桶: {}，容量: {}", key, limit.permitsPerSecond());
+        }
 
-            // 获取不到命令牌，直接返回异常提示
-            if (!acquire) {
-                log.debug("令牌桶: {}，获取令牌失败", key);
-                return null;
-            }
+        // 获取令牌
+        boolean acquire = limitMap.get(key).tryAcquire(limit.timeout(), limit.timeunit());
+
+        // 获取不到命令牌，直接返回异常提示
+        if (!acquire) {
+            log.debug("令牌桶: {}，获取令牌失败", key);
+            throw new ScaffoldException(limit.msg());
         }
 
         return joinPoint.proceed();
