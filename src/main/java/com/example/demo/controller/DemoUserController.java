@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.enums.ResponseEnum;
+import com.example.demo.exception.ScaffoldException;
 import com.example.demo.vo.ResponseVo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,6 @@ public class DemoUserController {
 
     @GetMapping("/error")
     public ResponseVo error() {
-        return ResponseVo.error(ResponseEnum.SERVER_ERROR);
+        throw new ScaffoldException(ResponseEnum.SERVER_ERROR);
     }
 }

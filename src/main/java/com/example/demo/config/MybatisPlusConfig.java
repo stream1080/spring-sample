@@ -20,7 +20,7 @@ public class MybatisPlusConfig {
 
     /**
      * 分页插件
-     * 一缓和二缓遵循mybatis的规则
+     * 一缓和二缓遵循 mybatis 的规则
      */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
