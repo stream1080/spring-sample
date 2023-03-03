@@ -1,9 +1,9 @@
 package com.example.demo.annnotation;
 
 import com.example.demo.validator.IsMobileValidator;
-import org.springframework.messaging.handler.annotation.Payload;
 
 import javax.validation.Constraint;
+import javax.validation.Payload;
 import java.lang.annotation.*;
 
 /**

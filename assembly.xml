@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+
+    <id>${artifactId}</id>
+    <!-- 应用名-run（压缩包解压后的目录名） -->
+    <!--    <baseDirectory>${artifactId}</baseDirectory>-->
+    <!--    <includeBaseDirectory>true</includeBaseDirectory>-->
+
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+
+    <fileSets>
+        <fileSet>
+            <directory>bin</directory>
+            <outputDirectory>bin</outputDirectory>
+            <fileMode>0755</fileMode>
+            <directoryMode>0755</directoryMode>
+            <filtered>true</filtered><!-- 是否进行属性替换 -->
+        </fileSet>
+
+        <fileSet>
+            <directory>conf</directory>
+            <outputDirectory>conf</outputDirectory>
+            <fileMode>0755</fileMode>
+            <directoryMode>0755</directoryMode>
+            <filtered>true</filtered><!-- 是否进行属性替换 -->
+        </fileSet>
+
+        <!--项目配置文件外置 -->
+        <fileSet>
+            <directory>${project.build.directory}/classes</directory>
+            <outputDirectory>conf</outputDirectory>
+            <includes>
+                <include>*.properties</include>
+                <include>*.yml</include>
+                <include>*.yaml</include>
+            </includes>
+        </fileSet>
+
+        <fileSet>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>lib</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+            <!--            <excludes>-->
+            <!--                <exclude>*sources.jar</exclude>-->
+            <!--            </excludes>-->
+        </fileSet>
+
+    </fileSets>
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <!-- 运行时依赖统一放在lib目录下 -->
+            <outputDirectory>lib</outputDirectory>
+            <scope>runtime</scope>
+        </dependencySet>
+    </dependencySets>
+</assembly>
