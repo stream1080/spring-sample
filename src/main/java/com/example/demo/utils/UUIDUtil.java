@@ -8,11 +8,11 @@ import java.util.UUID;
 public class UUIDUtil {
 
     /**
-     * 去掉UUID的"-"
+     * 16 位 uuid
      *
      * @return
      */
-    public static String uuid(){
-        return UUID.randomUUID().toString().replace("-","");
+    public static String traceId() {
+        return UUID.randomUUID().toString().replace("-", "").substring(16);
     }
 }
