@@ -1,9 +1,11 @@
 package com.example.demo.config;
 
+import com.google.common.collect.Lists;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -17,7 +19,6 @@ import springfox.documentation.spring.web.plugins.WebFluxRequestHandlerProvider;
 import springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,15 +26,18 @@ import java.util.stream.Collectors;
  * @author stream
  * @since 2022-12-30 11:22
  */
+@Profile("dev")
 @Configuration
 public class SwaggerConfig {
+
+    private static String TOKEN_NAME = "Authorization";
 
     @Bean
     public Docket docket() {
         return new Docket(DocumentationType.OAS_30)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.demo.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.demo"))
                 .paths(PathSelectors.any())
                 .build()
                 // 添加登录认证
@@ -56,10 +60,7 @@ public class SwaggerConfig {
      * @return
      */
     private List<SecurityScheme> securitySchemes() {
-        List<SecurityScheme> result = new ArrayList<>();
-        ApiKey apiKey = new ApiKey("Authorization", "Authorization", "header");
-        result.add(apiKey);
-        return result;
+        return Lists.newArrayList(new ApiKey(TOKEN_NAME, TOKEN_NAME, "header"));
     }
 
     /**
@@ -68,25 +69,18 @@ public class SwaggerConfig {
      * @return
      */
     private List<SecurityContext> securityContexts() {
-        List<SecurityContext> result = new ArrayList<>();
-        result.add(getContextByPath("/error/.*"));
-        return result;
-    }
-
-    private SecurityContext getContextByPath(String pathRegex) {
-        return SecurityContext.builder()
+        return Lists.newArrayList(SecurityContext.builder()
                 .securityReferences(defaultAuth())
-                .forPaths(PathSelectors.regex(pathRegex))
-                .build();
+                .forPaths(PathSelectors.regex("^/(login|register).*$"))
+                .build()
+        );
     }
 
     private List<SecurityReference> defaultAuth() {
-        List<SecurityReference> result = new ArrayList<>();
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;
-        result.add(new SecurityReference("Authorization", authorizationScopes));
-        return result;
+        return Lists.newArrayList(new SecurityReference(TOKEN_NAME, authorizationScopes));
     }
 
     /**
