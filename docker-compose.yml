@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:5.7
+    #指定容器名称
+    container_name: mysql
+    restart: always
+    #指定服务运行的端口
+    ports:
+      - "3306:3306"
+    #指定容器的环境变量
+    environment:
+      #数据库密码
+      - MYSQL_ROOT_PASSWORD=123456
+      #创建的库
+      - MYSQL_DATABASE=demo
+      #允许多IP连接数据库
+      - MYSQL_ROOT_HOST=%
+  redis:
+    image: redis
+    #指定容器名称
+    container_name: redis
+    ports:
+      - "6379:6379"
+  #指定服务名称
+  demo-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: demo-server
+    restart: always
+    #指定服务运行的端口
+    ports:
+      - "8080:8080"
+    #依赖的服务
+    depends_on:
+      - mysql
+      - redis
