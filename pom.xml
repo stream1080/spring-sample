@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>com.example.demo</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>spring-sample</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>scaffold-java</name>
+    <name>spring-sample</name>
 
     <description>Spring Boot 工程模版</description>
 

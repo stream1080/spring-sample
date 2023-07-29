@@ -1,6 +1,6 @@
 spring:
   application:
-    name: scaffold-java
+    name: spring-sample
   profiles:
     active: dev
   mvc:
