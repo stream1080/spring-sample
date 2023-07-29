@@ -15,6 +15,13 @@ spring:
       pool:
         max-active: 8
 
+canal:
+  server: 127.0.0.1:11111
+  destination: example
+  timeout: 30
+  user-name: root
+  password: 123456
+
 logging:
   level:
     root: info
