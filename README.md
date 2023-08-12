@@ -1,3 +1,7 @@
+[![Build Status](https://github.com/stream1080/spring-sample/actions/workflows/maven.yml/badge.svg)](https://github.com/stream1080/spring-sample/actions?query=branch%3Amaster) 
+![GitHub tag (latest by date)](https://img.shields.io/github/v/release/stream1080/spring-sample)
+![license](https://img.shields.io/github/license/stream1080/spring-sample)
+
 # SpringBoot 工程模版
 
 ## 项目简介
