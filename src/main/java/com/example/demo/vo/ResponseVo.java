@@ -5,6 +5,7 @@ import com.example.demo.enums.ResponseEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * 统一返回结果
@@ -13,6 +14,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
+@Accessors(chain = true)
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class ResponseVo {
 
