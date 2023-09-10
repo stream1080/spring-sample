@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import java.util.Objects;
@@ -20,7 +20,7 @@ import java.util.Objects;
  *
  * @date 2023-09-07 14:24:27
  */
-@ControllerAdvice
+@RestControllerAdvice
 public class ResponseEncryptAdvice implements ResponseBodyAdvice<Object> {
 
     @Value("${aes.key}")
@@ -54,23 +54,22 @@ public class ResponseEncryptAdvice implements ResponseBodyAdvice<Object> {
         boolean encrypt = false;
         // 获取类上的注解
         final boolean classPresentAnno = returnType.getContainingClass().isAnnotationPresent(ResponseEncrypt.class);
-        // 获取方法上的注解
-        final boolean methodPresentAnno = Objects.requireNonNull(returnType.getMethod()).isAnnotationPresent(ResponseEncrypt.class);
         if (classPresentAnno) {
             // 类上标注的是否需要加密
             encrypt = returnType.getContainingClass().getAnnotation(ResponseEncrypt.class).value();
             // 类不加密，所有都不加密
             if (!encrypt) {
-                return false;
+                return body;
             }
         }
+        // 获取方法上的注解
+        final boolean methodPresentAnno = Objects.requireNonNull(returnType.getMethod()).isAnnotationPresent(ResponseEncrypt.class);
         if (methodPresentAnno) {
             // 方法上标注的是否需要加密
             encrypt = returnType.getMethod().getAnnotation(ResponseEncrypt.class).value();
-        }
-
-        if (!encrypt) {
-            return body;
+            if (!encrypt) {
+                return body;
+            }
         }
 
         // 如果body是属于ResponseVo类型,只需要对data里面的数据进行加密即可
