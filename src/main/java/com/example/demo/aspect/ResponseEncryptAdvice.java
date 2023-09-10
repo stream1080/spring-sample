@@ -23,7 +23,7 @@ import java.util.Objects;
 @RestControllerAdvice
 public class ResponseEncryptAdvice implements ResponseBodyAdvice<Object> {
 
-    @Value("${aes.key}")
+    @Value("${aes.key:cc23d16933a4a4d6c51474e4ea691544}")
     private String key;
 
     @Override
