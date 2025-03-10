@@ -20,7 +20,7 @@ public class CodeGenerator {
     private static String password = "123456";
     private static String packageName = "com.example.demo";
     private static String xmlPath = "src/main/resources/mapper";
-    private static List<String> tables = Lists.newArrayList("demo_user");
+    private static List<String> tables = Lists.newArrayList("user");
 
 
     public static void main(String[] args) {

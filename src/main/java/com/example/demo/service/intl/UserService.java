@@ -1,7 +1,7 @@
 package com.example.demo.service.intl;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.demo.model.entity.DemoUser;
+import com.example.demo.model.entity.User;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.example.demo.model.entity.DemoUser;
  * @author stream
  * @since 2022-11-22
  */
-public interface UserService extends IService<DemoUser> {
+public interface UserService extends IService<User> {
 
 }
