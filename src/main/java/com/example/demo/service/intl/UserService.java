@@ -11,6 +11,6 @@ import com.example.demo.model.entity.DemoUser;
  * @author stream
  * @since 2022-11-22
  */
-public interface DemoUserService extends IService<DemoUser> {
+public interface UserService extends IService<DemoUser> {
 
 }
