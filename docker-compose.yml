@@ -15,6 +15,11 @@ services:
       - MYSQL_DATABASE=demo
       #允许多IP连接数据库
       - MYSQL_ROOT_HOST=%
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
   redis:
     image: redis:7.0
     #指定容器名称
@@ -22,11 +27,11 @@ services:
     ports:
       - "6379:6379"
   #指定服务名称
-  demo-server:
+  server:
     build:
       context: ./
       dockerfile: Dockerfile
-    container_name: demo-server
+    container_name: server
     restart: always
     #指定服务运行的端口
     ports:
