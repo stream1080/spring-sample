@@ -1,8 +1,8 @@
 SET NAMES utf8mb4;
 
-DROP TABLE IF EXISTS `demo_user`;
+DROP TABLE IF EXISTS `user`;
 
-CREATE TABLE `demo_user`
+CREATE TABLE `user`
 (
     `id`           int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
     `name`         varchar(50) NOT NULL COMMENT '姓名',

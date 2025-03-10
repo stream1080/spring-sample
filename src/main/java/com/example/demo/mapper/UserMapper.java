@@ -1,7 +1,7 @@
 package com.example.demo.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.demo.model.entity.DemoUser;
+import com.example.demo.model.entity.User;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.example.demo.model.entity.DemoUser;
  * @author stream
  * @since 2022-11-22
  */
-public interface DemoUserMapper extends BaseMapper<DemoUser> {
+public interface UserMapper extends BaseMapper<User> {
 
 }

@@ -22,9 +22,9 @@ import java.time.LocalDateTime;
  */
 @Data
 @Accessors(chain = true)
-@TableName("demo_user")
-@ApiModel(value = "DemoUser对象", description = "用户信息表")
-public class DemoUser implements Serializable {
+@TableName("user")
+@ApiModel(value = "User对象", description = "用户信息表")
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

@@ -1,7 +1,7 @@
 package com.example.demo.task;
 
-import com.example.demo.mapper.DemoUserMapper;
-import com.example.demo.model.entity.DemoUser;
+import com.example.demo.mapper.UserMapper;
+import com.example.demo.model.entity.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -14,23 +14,23 @@ import top.javatool.canal.client.handler.EntryHandler;
  */
 @Slf4j
 @Component
-@CanalTable(value = "demo_user")
+@CanalTable(value = "user")
 @RequiredArgsConstructor
-public class UserHandler implements EntryHandler<DemoUser> {
+public class UserHandler implements EntryHandler<User> {
 
-    private final DemoUserMapper demoUserMapper;
+    private final UserMapper demoUserMapper;
 
-    public void insert(DemoUser user) {
+    public void insert(User user) {
         log.info("insert message  {}", user);
         demoUserMapper.insert(user);
     }
 
-    public void update(DemoUser before, DemoUser after) {
+    public void update(User before, User after) {
         log.info("update before {} ", before);
         log.info("update after {}", after);
     }
 
-    public void delete(DemoUser user) {
+    public void delete(User user) {
         log.info("delete  {}", user);
     }
 }
